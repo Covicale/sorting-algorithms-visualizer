@@ -15,6 +15,8 @@ Sorting Algorithms Visualizer is a project made with Typescript and Next.JS that
 
 The project was mainly created to learn how generators can be used to visualize the sorting algorithms step by step.
 
+Try it out [here](https://sorting-algorithms-visualizer-kohl.vercel.app/).
+
 # License
 
 [MIT](LICENSE)
