@@ -1,0 +1,50 @@
+{
+  "bubble": {
+    "name": "BubbleSort",
+    "timeComplexityWorst": "O(n^2)",
+    "timeComplexityAverage": "O(n^2)",
+    "timeComplexityBest": "O(n)",
+    "spaceComplexity": "O(1)",
+    "url": "https://en.wikipedia.org/wiki/Bubble_sort"
+  },
+  "radix": {
+    "name": "RadixSort",
+    "timeComplexityWorst": "O(nk)",
+    "timeComplexityAverage": "O(nk)",
+    "timeComplexityBest": "O(nk)",
+    "spaceComplexity": "O(n + k)",
+    "url": "https://en.wikipedia.org/wiki/Radix_sort"
+  },
+  "quick": {
+    "name": "QuickSort",
+    "timeComplexityWorst": "O(n^2)",
+    "timeComplexityAverage": "O(n log n)",
+    "timeComplexityBest": "O(n log n)",
+    "spaceComplexity": "O(log n)",
+    "url": "https://en.wikipedia.org/wiki/Quicksort"
+  },
+  "merge": {
+    "name": "MergeSort",
+    "timeComplexityWorst": "O(n log n)",
+    "timeComplexityAverage": "O(n log n)",
+    "timeComplexityBest": "O(n log n)",
+    "spaceComplexity": "O(n)",
+    "url": "https://en.wikipedia.org/wiki/Merge_sort"
+  },
+  "selection": {
+    "name": "SelectionSort",
+    "timeComplexityWorst": "O(n^2)",
+    "timeComplexityAverage": "O(n^2)",
+    "timeComplexityBest": "O(n^2)",
+    "spaceComplexity": "O(1)",
+    "url": "https://en.wikipedia.org/wiki/Selection_sort"
+  },
+  "insertion": {
+    "name": "InsertionSort",
+    "timeComplexityWorst": "O(n^2)",
+    "timeComplexityAverage": "O(n^2)",
+    "timeComplexityBest": "O(n)",
+    "spaceComplexity": "O(1)",
+    "url": "https://en.wikipedia.org/wiki/Insertion_sort"
+  }
+}
