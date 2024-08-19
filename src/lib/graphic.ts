@@ -2,11 +2,18 @@ export class SortingVisualizer {
   private ctx: CanvasRenderingContext2D;
   private barsColors = ["#FFFFFF", "#F5F5F5", "#E8E8E8", "#D3D3D3"];
 
-  constructor(canvas: HTMLCanvasElement, width: number, height: number) {
+  constructor(canvas: HTMLCanvasElement) {
     const dims = canvas.getBoundingClientRect();
     canvas.width = dims.width;
     canvas.height = dims.height;
     this.ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    canvas.addEventListener("resize", this.onResize.bind(this));
+  }
+
+  private onResize() {
+    const dims = this.ctx.canvas.getBoundingClientRect();
+    this.ctx.canvas.width = dims.width;
+    this.ctx.canvas.height = dims.height;
   }
 
   private clearCanvas() {

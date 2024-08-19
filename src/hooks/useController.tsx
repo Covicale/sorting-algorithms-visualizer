@@ -37,7 +37,7 @@ export const useSortingController = ({
 
   useEffect(() => {
     if (canvasRef.current) {
-      const visualizer = new SortingVisualizer(canvasRef.current, 1000, 500);
+      const visualizer = new SortingVisualizer(canvasRef.current);
       const newController = new SortingController(visualizer, arraySize);
       newController.algorithm = algorithm;
       setController(newController);

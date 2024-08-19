@@ -5,11 +5,6 @@ import { useSortingController } from "@/hooks/useController";
 import { Algorithm, AlgorithmInfo, algorithms } from "@/lib/sorting";
 import { useRef, useState } from "react";
 
-interface ControllerState {
-  running: boolean;
-  paused: boolean;
-}
-
 export default function Home() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [algorithm, setAlgorithm] = useState<Algorithm>("bubble");
