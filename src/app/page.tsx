@@ -37,8 +37,8 @@ export default function Home() {
   };
 
   return (
-    <div className="m-10 min-h-[90vh] grid grid-cols-1 md:grid-cols-8 gap-4">
-      <main className="h-full col-span-6 flex flex-col items-center justify-center gap-y-4 p-4">
+    <div className="m-10 min-h-[90vh] grid grid-cols-8 gap-4">
+      <main className="h-full col-span-8 md:col-span-6 flex flex-col items-center justify-center gap-y-4 p-4">
         <canvas className="w-full border-2 shadow-md" ref={canvasRef}></canvas>
         <ul className="flex gap-x-4 flex-wrap items-center justify-center gap-y-2">
           {!controllerState.running ? (
@@ -104,7 +104,7 @@ export default function Home() {
               </option>
             ))}
           </select>
-          <div className="flex gap-x-4 items-center">
+          <div className="flex flex-col md:flex-row gap-y-2 md:gap-x-4 items-center">
             <label htmlFor="array size">Number of items (N):</label>
             <input
               onChange={handleOnArraySizeChange}
