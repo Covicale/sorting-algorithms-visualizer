@@ -2,7 +2,10 @@ import {
   Algorithm,
   AlgorithmGenerator,
   BubbleSort,
+  HeapSort,
   InsertionSort,
+  MergeSort,
+  QuickSort,
   SelectionSort,
   SortingAlgorithm,
   SortingAlgorithmReturn,
@@ -46,6 +49,15 @@ export default class SortingController {
         break;
       case "selection":
         this.sortingAlgorithm = new SelectionSort();
+        break;
+      case "heap":
+        this.sortingAlgorithm = new HeapSort();
+        break;
+      case "quick":
+        this.sortingAlgorithm = new QuickSort();
+        break;
+      case "merge":
+        this.sortingAlgorithm = new MergeSort();
         break;
       default:
         this.sortingAlgorithm = new BubbleSort();

@@ -1,7 +1,14 @@
 import AlgorithmInfoRaw from "@/data/sort-info.json";
 import { swap } from "./utils";
 
-export const algorithms = ["bubble", "selection", "insertion"] as const;
+export const algorithms = [
+  "bubble",
+  "selection",
+  "insertion",
+  "heap",
+  "quick",
+  "merge",
+] as const;
 export type Algorithm = (typeof algorithms)[number];
 export type AlgorithmGenerator = Generator<
   SortingAlgorithmReturn,
@@ -81,6 +88,155 @@ export class SelectionSort extends SortingAlgorithm {
         yield { arr, selectedBars: [i, minIdx] };
       }
     }
+    return arr;
+  }
+}
+
+export class HeapSort extends SortingAlgorithm {
+  private *heapify(
+    arr: number[],
+    n: number,
+    i: number
+  ): Generator<SortingAlgorithmReturn, void, SortingAlgorithmReturn> {
+    let largest = i;
+    const left = 2 * i + 1;
+    const right = 2 * i + 2;
+
+    if (left < n && arr[left] > arr[largest]) {
+      largest = left;
+    }
+
+    if (right < n && arr[right] > arr[largest]) {
+      largest = right;
+    }
+
+    if (largest !== i) {
+      swap(arr, i, largest);
+      yield { arr, selectedBars: [i, largest] };
+      yield* this.heapify(arr, n, largest);
+    }
+  }
+
+  public *sort(arr: number[]): AlgorithmGenerator {
+    const n = arr.length;
+
+    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
+      yield* this.heapify(arr, n, i);
+    }
+
+    for (let i = n - 1; i > 0; i--) {
+      swap(arr, 0, i);
+      yield { arr, selectedBars: [0, i] };
+      yield* this.heapify(arr, i, 0);
+    }
+
+    return arr;
+  }
+}
+
+export class QuickSort extends SortingAlgorithm {
+  private *partition(
+    arr: number[],
+    low: number,
+    high: number
+  ): Generator<SortingAlgorithmReturn, number, SortingAlgorithmReturn> {
+    const pivot = arr[high];
+    let i = low - 1;
+
+    for (let j = low; j < high; j++) {
+      if (arr[j] < pivot) {
+        i++;
+        swap(arr, i, j);
+        yield { arr, selectedBars: [i, j] };
+      }
+    }
+
+    swap(arr, i + 1, high);
+    yield { arr, selectedBars: [i + 1, high] };
+
+    return i + 1;
+  }
+
+  private *quickSort(
+    arr: number[],
+    low: number,
+    high: number
+  ): Generator<SortingAlgorithmReturn, void, SortingAlgorithmReturn> {
+    if (low < high) {
+      const pi = yield* this.partition(arr, low, high);
+
+      yield* this.quickSort(arr, low, pi - 1);
+      yield* this.quickSort(arr, pi + 1, high);
+    }
+  }
+
+  public *sort(arr: number[]): AlgorithmGenerator {
+    yield* this.quickSort(arr, 0, arr.length - 1);
+    return arr;
+  }
+}
+
+export class MergeSort extends SortingAlgorithm {
+  private *merge(
+    arr: number[],
+    l: number,
+    m: number,
+    r: number
+  ): Generator<SortingAlgorithmReturn, void, SortingAlgorithmReturn> {
+    const n1 = m - l + 1;
+    const n2 = r - m;
+
+    const L = arr.slice(l, l + n1);
+    const R = arr.slice(m + 1, m + 1 + n2);
+
+    let i = 0;
+    let j = 0;
+    let k = l;
+
+    while (i < n1 && j < n2) {
+      if (L[i] <= R[j]) {
+        arr[k] = L[i];
+        i++;
+      } else {
+        arr[k] = R[j];
+        j++;
+      }
+      yield { arr, selectedBars: [l + i, m + 1 + j] };
+      k++;
+    }
+
+    while (i < n1) {
+      arr[k] = L[i];
+      yield { arr, selectedBars: [l + i, m + 1 + j] };
+      i++;
+      k++;
+    }
+
+    while (j < n2) {
+      arr[k] = R[j];
+      yield { arr, selectedBars: [l + i, m + 1 + j] };
+      j++;
+      k++;
+    }
+  }
+
+  private *mergeSort(
+    arr: number[],
+    l: number,
+    r: number
+  ): Generator<SortingAlgorithmReturn, void, SortingAlgorithmReturn> {
+    if (l < r) {
+      const m = Math.floor(l + (r - l) / 2);
+
+      yield* this.mergeSort(arr, l, m);
+      yield* this.mergeSort(arr, m + 1, r);
+
+      yield* this.merge(arr, l, m, r);
+    }
+  }
+
+  public *sort(arr: number[]): AlgorithmGenerator {
+    yield* this.mergeSort(arr, 0, arr.length - 1);
     return arr;
   }
 }

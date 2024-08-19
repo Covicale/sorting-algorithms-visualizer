@@ -46,5 +46,13 @@
     "timeComplexityBest": "O(n)",
     "spaceComplexity": "O(1)",
     "url": "https://en.wikipedia.org/wiki/Insertion_sort"
+  },
+  "heap": {
+    "name": "HeapSort",
+    "timeComplexityWorst": "O(n log n)",
+    "timeComplexityAverage": "O(n log n)",
+    "timeComplexityBest": "O(n log n)",
+    "spaceComplexity": "O(1)",
+    "url": "https://en.wikipedia.org/wiki/Heapsort"
   }
 }
