@@ -7,13 +7,6 @@ export class SortingVisualizer {
     canvas.width = dims.width;
     canvas.height = dims.height;
     this.ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-    canvas.addEventListener("resize", this.onResize.bind(this));
-  }
-
-  private onResize() {
-    const dims = this.ctx.canvas.getBoundingClientRect();
-    this.ctx.canvas.width = dims.width;
-    this.ctx.canvas.height = dims.height;
   }
 
   private clearCanvas() {
@@ -34,12 +27,12 @@ export class SortingVisualizer {
     const fillColor = color || this.barsColors[index % this.barsColors.length];
     this.ctx.fillStyle = fillColor;
     this.ctx.fillRect(x, y, barWidth, barHeight);
-    this.ctx.strokeRect(x, y, barWidth, barHeight);
   }
 
   display(values: number[], selectedBars?: number[]): void {
     this.clearCanvas();
     const barWidth = this.ctx.canvas.width / values.length;
+
     const maxValue = Math.max(...values);
     values.forEach((value, index) => {
       this.drawBar(value, index, maxValue, barWidth);
