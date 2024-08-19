@@ -6,6 +6,7 @@ import {
   InsertionSort,
   MergeSort,
   QuickSort,
+  RadixSort,
   SelectionSort,
   SortingAlgorithm,
   SortingAlgorithmReturn,
@@ -58,6 +59,9 @@ export default class SortingController {
         break;
       case "merge":
         this.sortingAlgorithm = new MergeSort();
+        break;
+      case "radix":
+        this.sortingAlgorithm = new RadixSort();
         break;
       default:
         this.sortingAlgorithm = new BubbleSort();
