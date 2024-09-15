@@ -12,6 +12,10 @@ Sorting Algorithms Visualizer is a project made with Typescript and Next.JS that
 - Bubble Sort
 - Selection Sort
 - Insertion Sort
+- Heap Sort
+- Merge Sort
+- Quick Sort
+- Radix Sort
 
 The project was mainly created to learn how generators can be used to visualize the sorting algorithms step by step.
 
